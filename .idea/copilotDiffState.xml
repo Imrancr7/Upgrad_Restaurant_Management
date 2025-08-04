@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/diagrams/customer_management.puml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/diagrams/customer_management.puml" />
+              <option name="updatedContent" value="@startuml Customer Management&#10;&#10;actor User&#10;participant ConsoleApp&#10;participant CustomerServiceImpl&#10;participant CustomerDAO&#10;database Database&#10;&#10;== Add Customer ==&#10;User -&gt; ConsoleApp: Choose Option 1&#10;ConsoleApp -&gt; User: Request customer details&#10;User -&gt; ConsoleApp: Provide name, phone, email&#10;ConsoleApp -&gt; CustomerServiceImpl: addCustomer(name, phone, email)&#10;CustomerServiceImpl -&gt; CustomerDAO: save(customer)&#10;CustomerDAO -&gt; Database: Insert customer record&#10;Database --&gt; CustomerDAO: Confirm insertion&#10;CustomerDAO --&gt; CustomerServiceImpl: Return success&#10;CustomerServiceImpl --&gt; ConsoleApp: Return success&#10;ConsoleApp --&gt; User: Display &quot;Customer added!&quot;&#10;&#10;== View Customers ==&#10;User -&gt; ConsoleApp: Choose Option 2&#10;ConsoleApp -&gt; CustomerServiceImpl: listCustomers()&#10;CustomerServiceImpl -&gt; CustomerDAO: findAll()&#10;CustomerDAO -&gt; Database: Query all customers&#10;Database --&gt; CustomerDAO: Return customer records&#10;CustomerDAO --&gt; CustomerServiceImpl: Return customer list&#10;CustomerServiceImpl --&gt; ConsoleApp: Return customer list&#10;ConsoleApp --&gt; User: Display all customers&#10;&#10;== Delete Customer ==&#10;User -&gt; ConsoleApp: Choose Option 3&#10;ConsoleApp -&gt; User: Request customer ID&#10;User -&gt; ConsoleApp: Provide customer ID&#10;ConsoleApp -&gt; CustomerServiceImpl: deleteCustomer(id)&#10;CustomerServiceImpl -&gt; CustomerDAO: delete(id)&#10;CustomerDAO -&gt; Database: Delete customer record&#10;Database --&gt; CustomerDAO: Confirm deletion&#10;CustomerDAO --&gt; CustomerServiceImpl: Return success&#10;CustomerServiceImpl --&gt; ConsoleApp: Return success&#10;ConsoleApp --&gt; User: Display &quot;Customer deleted!&quot;&#10;&#10;@enduml" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/diagrams/table_booking.puml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/diagrams/table_booking.puml" />
+              <option name="updatedContent" value="@startuml Table Booking&#10;&#10;actor User&#10;participant TableBookingUI&#10;participant BookingServiceImpl&#10;participant TableDAO&#10;participant BookingDAO&#10;database Database&#10;&#10;== Table Booking Flow ==&#10;User -&gt; TableBookingUI: Start booking flow&#10;TableBookingUI -&gt; TableDAO: getAvailableTables()&#10;TableDAO -&gt; Database: Query available tables&#10;Database --&gt; TableDAO: Return available tables&#10;TableDAO --&gt; TableBookingUI: Return available tables list&#10;TableBookingUI --&gt; User: Display available tables&#10;User -&gt; TableBookingUI: Provide Customer ID&#10;User -&gt; TableBookingUI: Select Table ID to book&#10;TableBookingUI -&gt; BookingServiceImpl: bookTable(customerId, tableId)&#10;BookingServiceImpl -&gt; TableDAO: markAsBooked(tableId)&#10;TableDAO -&gt; Database: Update table availability status&#10;Database --&gt; TableDAO: Confirm update&#10;TableDAO --&gt; BookingServiceImpl: Return booking success status&#10;alt Booking Successful&#10;    BookingServiceImpl -&gt; BookingDAO: save(new Booking)&#10;    BookingDAO -&gt; Database: Insert booking record&#10;    Database --&gt; BookingDAO: Confirm insertion&#10;    BookingDAO --&gt; BookingServiceImpl: Return success&#10;    BookingServiceImpl --&gt; TableBookingUI: Return true&#10;    TableBookingUI --&gt; User: Display &quot;Table booked successfully!&quot;&#10;else Booking Failed&#10;    BookingServiceImpl --&gt; TableBookingUI: Return false&#10;    TableBookingUI --&gt; User: Display &quot;Table is already booked&quot;&#10;end&#10;&#10;@enduml" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

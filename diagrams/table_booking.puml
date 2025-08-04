@@ -1,0 +1,36 @@
+@startuml Table Booking
+
+actor User
+participant TableBookingUI
+participant BookingServiceImpl
+participant TableDAO
+participant BookingDAO
+database Database
+
+== Table Booking Flow ==
+User -> TableBookingUI: Start booking flow
+TableBookingUI -> TableDAO: getAvailableTables()
+TableDAO -> Database: Query available tables
+Database --> TableDAO: Return available tables
+TableDAO --> TableBookingUI: Return available tables list
+TableBookingUI --> User: Display available tables
+User -> TableBookingUI: Provide Customer ID
+User -> TableBookingUI: Select Table ID to book
+TableBookingUI -> BookingServiceImpl: bookTable(customerId, tableId)
+BookingServiceImpl -> TableDAO: markAsBooked(tableId)
+TableDAO -> Database: Update table availability status
+Database --> TableDAO: Confirm update
+TableDAO --> BookingServiceImpl: Return booking success status
+alt Booking Successful
+    BookingServiceImpl -> BookingDAO: save(new Booking)
+    BookingDAO -> Database: Insert booking record
+    Database --> BookingDAO: Confirm insertion
+    BookingDAO --> BookingServiceImpl: Return success
+    BookingServiceImpl --> TableBookingUI: Return true
+    TableBookingUI --> User: Display "Table booked successfully!"
+else Booking Failed
+    BookingServiceImpl --> TableBookingUI: Return false
+    TableBookingUI --> User: Display "Table is already booked"
+end
+
+@enduml
