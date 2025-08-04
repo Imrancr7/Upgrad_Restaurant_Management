@@ -23,7 +23,7 @@ public class BookingDAOImpl implements BookingDAO {
             stmt.setInt(1, booking.getCustomerId());
             stmt.setInt(2, booking.getTableId());
             stmt.setTimestamp(3, Timestamp.valueOf(booking.getBookingTime()));
-            stmt.setString(4, booking.getStatus());
+            stmt.setString(4, "BOOKED");
             stmt.executeUpdate();
             try (ResultSet keys = stmt.getGeneratedKeys()) {
                 if (keys.next()) {

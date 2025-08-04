@@ -12,7 +12,7 @@ public class OrderItemDAOImpl implements OrderItemDAO  {
 
     @Override
     public OrderItem addOrderItem(OrderItem orderItem) {
-       String sql = "INSERT INTO order_item (order_id, menu_item_id, quantity, price) VALUES (?, ?, ?, ?)";
+       String sql = "INSERT INTO order_item (order_id, item_id, quantity) VALUES (?, ?, ?)";
        try(Connection conn = DBConnection.getConnection();
            PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
            stmt.setInt(1, orderItem.getOrderId());
@@ -83,7 +83,7 @@ public class OrderItemDAOImpl implements OrderItemDAO  {
     @Override
     public void updateOrderItem(OrderItem orderItem) {
 
-        String sql = "UPDATE order_item SET order_id = ?, menu_item_id = ?, quantity = ? WHERE order_item_id = ?";
+        String sql = "UPDATE order_item SET order_id = ?, item_id = ?, quantity = ? WHERE order_item_id = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, orderItem.getOrderId());
@@ -125,7 +125,7 @@ public class OrderItemDAOImpl implements OrderItemDAO  {
                 OrderItem orderItem = new OrderItem.Builder()
                         .orderItemId(rs.getInt("order_item_id"))
                         .orderId(rs.getInt("order_id"))
-                        .itemId(rs.getInt("menu_item_id"))
+                        .itemId(rs.getInt("item_id"))
                         .quantity(rs.getInt("quantity"))
                         .build();
                 orderItems.add(orderItem);

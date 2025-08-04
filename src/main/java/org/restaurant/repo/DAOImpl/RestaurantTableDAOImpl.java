@@ -89,6 +89,17 @@ public class RestaurantTableDAOImpl implements RestaurantTableDAO {
     }
 
     @Override
+    public void updateTableAvailability(int id, boolean isAvailable) {
+        String sql = "UPDATE restaurant_table SET is_available = ? WHERE table_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setBoolean(1, isAvailable);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) { e.printStackTrace(); }
+    }
+
+    @Override
     public void deleteTable(int id) {
         String sql = "DELETE FROM restaurant_table WHERE table_id = ?";
         try (Connection conn = DBConnection.getConnection();

@@ -28,7 +28,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                     return new Customer.Builder()
                             .customerId(keys.getInt(1))
                             .name(customer.getName())
-                            .phone(customer.getPhone())
+                              .phone(customer.getPhone())
                             .email(customer.getEmail())
                             .build();
                 }

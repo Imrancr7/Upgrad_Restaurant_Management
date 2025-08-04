@@ -1,6 +1,8 @@
 package org.restaurant.service.Customer;
 
 import org.restaurant.model.Customer;
+import org.restaurant.model.RestaurantTable;
+
 import java.util.List;
 
 public interface CustomerService {
@@ -9,5 +11,6 @@ public interface CustomerService {
     List<Customer> getAllCustomers();
     void updateCustomerInfo(Customer customer);
     void removeCustomer(int id);
+    List<RestaurantTable> getAvailableTables();
 }
 

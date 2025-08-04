@@ -9,6 +9,7 @@ public interface RestaurantTableDAO {
     RestaurantTable getTableById(int tableId);
     List<RestaurantTable> getAllTables();
     void updateTable(RestaurantTable table);
+    void updateTableAvailability(int tableId, boolean isAvailable);
     void deleteTable(int tableId);
 
     List<RestaurantTable> getAvailableTables();

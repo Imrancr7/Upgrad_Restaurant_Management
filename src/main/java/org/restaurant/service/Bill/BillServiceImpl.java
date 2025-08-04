@@ -3,6 +3,9 @@ package org.restaurant.service.Bill;
 
 import org.restaurant.model.Bill;
 import org.restaurant.model.OrderItem;
+import org.restaurant.repo.DAOImpl.BillDAOImpl;
+import org.restaurant.repo.DAOImpl.MenuItemDAOImpl;
+import org.restaurant.repo.DAOImpl.OrderItemDAOImpl;
 import org.restaurant.repo.DAOInterface.BillDAO;
 import org.restaurant.repo.DAOInterface.MenuItemDAO;
 import org.restaurant.repo.DAOInterface.OrderItemDAO;
@@ -15,11 +18,10 @@ public class BillServiceImpl implements BillService {
     private final OrderItemDAO orderItemDAO;
     private final MenuItemDAO menuItemDAO;
 
-    public BillServiceImpl(BillDAO billDAO, OrderItemDAO orderItemDAO,
-                           MenuItemDAO menuItemDAO) {
-        this.billDAO = billDAO;
-        this.orderItemDAO = orderItemDAO;
-        this.menuItemDAO = menuItemDAO;
+    public BillServiceImpl() {
+        this.billDAO = new BillDAOImpl(); // Assuming you have a BillDAOImpl
+        this.orderItemDAO = new OrderItemDAOImpl();
+        this.menuItemDAO = new MenuItemDAOImpl();
     }
 
     @Override

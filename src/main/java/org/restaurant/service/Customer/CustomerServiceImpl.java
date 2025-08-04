@@ -2,17 +2,22 @@ package org.restaurant.service.Customer;
 
 
 import org.restaurant.model.Customer;
+import org.restaurant.model.RestaurantTable;
+import org.restaurant.repo.DAOImpl.RestaurantTableDAOImpl;
 import org.restaurant.repo.DAOInterface.CustomerDAO;
 import org.restaurant.repo.DAOImpl.CustomerDAOImpl;
+import org.restaurant.repo.DAOInterface.RestaurantTableDAO;
 
 import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerDAO customerDAO;
+    private final RestaurantTableDAO restaurantTableDAO;
 
     public CustomerServiceImpl() {
         this.customerDAO = new CustomerDAOImpl();
+        this.restaurantTableDAO = new RestaurantTableDAOImpl(); // Assuming you have a RestaurantTableDAOImpl
     }
 
     @Override
@@ -39,6 +44,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void removeCustomer(int id) {
         customerDAO.deleteCustomer(id);
+    }
+
+    @Override
+    public List<RestaurantTable> getAvailableTables() {
+        return restaurantTableDAO.getAvailableTables();
     }
 }
 
