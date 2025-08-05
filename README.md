@@ -276,7 +276,7 @@ flowchart TD
     L --> M[Generate Bill]
     M --> N[Pay Bill]
     N --> O[Retrieve Booking by ID]
-    O --> P[Cancel Booking]
+    O --> P[Release Booking]
     P --> Q[Show Updated Available Tables]
     Q --> R[End]
 ```
